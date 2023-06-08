@@ -38,4 +38,54 @@ plt.title("Housing Prices")
 plt.ylabel('Price (in 1000s of dollars)')
 # Set the x-axis label
 plt.xlabel('Size (1000 sqft)')
-plt.show()
+plt.show() # shown as figure_1.png
+
+w = 200
+b = 100
+print(f"w: {w}")
+print(f"b: {b}")
+
+def compute_model_output(x, w, b):
+    """
+    Computes the prediction of a linear model
+    Args:
+        x (ndarray (m,)): Data, m examples
+        w, b (scalar)   : model parameters
+    Returns
+        y (ndarray (m,)): target values
+    """
+    m = x.shape[0]
+    f_wb = np.zeros(m)
+    for i in range(m):
+        f_wb[i] = w* x[i] + b
+
+    return f_wb
+
+# Now, let's call the compute_model_output function and plot the output
+
+tmp_f_wb = compute_model_output(x_train, w, b,)
+
+# Plot our model prediction
+plt.plot(x_train, tmp_f_wb, c='b', label='Our Prediction')
+
+# Plot the data points
+plt.scatter(x_train, y_train, marker='x', c='r', label='Actual Values')
+
+# Set the title
+plt.title("Housing Prices")
+# Set the y-axis label
+plt.ylabel('Price (in 1000s of dollars)')
+# Set the x-axis label
+plt.xlabel('Size (1000 sqft)')
+plt.legend()
+plt.show() # shown as figure_2.png
+
+"""
+Prediction
+Now that we have a model, we can use it to make our original prediction.
+"""
+
+x_i = 1.2
+cost_1200sqft = w * x_i + b
+
+print(f"${cost_1200sqft:.0f} thousand dollars")
